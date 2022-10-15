@@ -1,27 +1,36 @@
 {
-  "name": "work-demo-react",
+  "name": "name",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10",
-    "antd": "^4.19.3",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
-    "react-flow-renderer": "^10.3.12",
-    "react-scripts": "4.0.3",
-    "react-window": "^1.8.6",
-    "styled-components": "^5.3.5",
-    "web-vitals": "1.0.1"
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "^27.5.2",
+    "@types/node": "^16.11.65",
+    "@types/react": "^18.0.21",
+    "@types/react-dom": "^18.0.6",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "5.0.1",
+    "typescript": "^4.8.4",
+    "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "lint-staged",
-    "prepare": "husky install"
+    "lint-staged": "lint-staged",
+    "prepare": "husky install",
+    "lint": "eslint --ext .ts,.tsx,.js src",
+    "lint-fix": "eslint --ext .ts,.tsx,.js src --fix"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
   },
   "browserslist": {
     "production": [
@@ -36,22 +45,26 @@
     ]
   },
   "devDependencies": {
-    "babel-eslint": "10.1.0",
-    "eslint": "7.30.0",
-    "eslint-config-alloy": "4.1.0",
-    "eslint-plugin-prettier": "3.4.0",
-    "eslint-plugin-react": "7.24.0",
-    "eslint-webpack-plugin": "^3.1.1",
-    "lint-staged": "^11.1.1",
-    "prettier": "2.3.2",
+    "@types/react-router-dom": "^5.3.3",
+    "@typescript-eslint/parser": "^5.40.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^8.25.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx-a11y": "^6.6.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.31.10",
+    "eslint-plugin-typescript": "^0.14.0",
+    "lint-staged": "^13.0.3",
+    "prettier": "^2.7.1",
     "husky": "^8.0.0"
   },
   "lint-staged": {
-    "*.{js,jsx}": [
+    "*.{js,jsx,ts,tsx,less}": [
       "eslint --fix",
       "git add"
     ],
-    "*.{js,jsx,less,json}": [
+    "*.{js,jsx,ts,tsx,less,json}": [
       "prettier --write"
     ]
   }
