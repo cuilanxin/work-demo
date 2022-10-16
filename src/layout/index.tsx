@@ -17,6 +17,7 @@ export default function Layout(props: LayoutProps) {
       <Side />
       <Content />
       <Footer />
+      <div style={{ clear: "both" }}></div>
     </div>
   );
 }

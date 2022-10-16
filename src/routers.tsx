@@ -16,9 +16,9 @@ const routes: Array<RouteObject> = [
         element: RouterLoading(lazy(() => import("./pages/home"))),
       },
       {
-        path: "about",
-        id: "新闻",
-        element: RouterLoading(lazy(() => import("./pages/about"))),
+        path: "virtual-render",
+        id: "虚拟渲染",
+        element: RouterLoading(lazy(() => import("./pages/virtual-render"))),
       },
     ],
   },
