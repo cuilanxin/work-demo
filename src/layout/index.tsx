@@ -1,23 +1,21 @@
 import React from "react";
 import Side from "./side";
-import Nav from "./nav";
-import "./index.css";
-import { Outlet } from "react-router-dom";
+import Header from "./header";
+import Content from "./content";
+import "./index.less";
 interface LayoutProps {
   // menu: [];
   // children: JSX.Element;
 }
 
 export default function Layout(props: LayoutProps) {
-  console.log("props: ", props);
-  // const { children } = props;
   props;
   return (
     <div className="layout-container">
-      <Nav />
+      <Header />
       <Side />
-      <div>22</div>
-      <Outlet />
+      <Content />
+      <div className="footer-container">footer</div>
     </div>
   );
 }
