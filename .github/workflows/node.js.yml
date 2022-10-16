@@ -28,18 +28,13 @@ jobs:
         cache: 'npm'
     - run: npm install
     - run: npm build
-    - name: Deploy to work-demo.github.io
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        user_name: 'github-actions[bot]'
-        user_email: 'github-actions[bot]@users.noreply.github.com'
-        commit_message: '[${{steps.tag_version.outputs.tag}}] ${{ github.event.head_commit.message }}'
-        personal_token: ${{ secrets.PERSONAL_TOKEN_UIW }}
-        publish_dir: ./build
-        publish_branch: main
-        external_repository: work-demo.github.io
-        run: |
-          git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
-          npx gh-pages -d public -u "兰鑫 <1192065030@qq.com>"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: build
+      run: npm build 
+      cp -fr ./build ./publish
+    -name: publish
+      uses: s0/git-publish-subdir-action@master
+      env:
+        REPO: work-demo.github.io
+        BRANCH: main
+        FOLDER: build        
+        SSH_PRIVATE_KEY: ${{ secrets.publish }}
