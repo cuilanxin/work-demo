@@ -3,8 +3,8 @@ import ReactDOM from "react-dom/client";
 import reportWebVitals from "./reportWebVitals";
 import {
   BrowserRouter,
-  Link,
   useRoutes,
+  // Link,
   // Routes,
   // Route,
 } from "react-router-dom";
@@ -16,11 +16,6 @@ const Routes = () => {
 function App() {
   return (
     <BrowserRouter>
-      <nav>
-        <Link to="/home">Home</Link>
-        <Link to="/about">About</Link>
-        <Link to="product">Product</Link>
-      </nav>
       <Routes />
     </BrowserRouter>
   );

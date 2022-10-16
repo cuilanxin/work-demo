@@ -4,7 +4,7 @@ import Layout from "./layout";
 import RouterLoading from "./router-loading";
 // import Home from "./pages/home";
 
-export default [
+const routes: Array<RouteObject> = [
   {
     path: "/",
     element: <Layout />,
@@ -12,15 +12,17 @@ export default [
       // { index: true, element: RouterLoading(lazy(() => import("./pages/home"))) },
       {
         path: "home",
+        id: "首页",
         element: RouterLoading(lazy(() => import("./pages/home"))),
       },
       {
         path: "about",
+        id: "新闻",
         element: RouterLoading(lazy(() => import("./pages/about"))),
       },
     ],
   },
   { path: "*", element: <div>404</div> },
-] as Array<RouteObject>;
+];
 
-// export default arr;
+export default routes;
