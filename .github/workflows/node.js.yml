@@ -29,8 +29,9 @@ jobs:
     - run: npm install
     - run: npm build
     - name: build
-      run: npm build 
-      cp -fr ./build ./publish
+      run: |
+        npm build 
+        cp -fr ./build ./publish
     -name: publish
       uses: s0/git-publish-subdir-action@master
       env:
