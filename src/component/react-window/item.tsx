@@ -10,7 +10,7 @@ export default function Item(props: ItemProps) {
   const [isMove, setIsMove] = useState<boolean>(false);
 
   const onMouseMove = () => {
-    setIsMove(true);
+    setIsMove(false);
   };
   const onMouseLeave = () => {
     setIsMove(false);

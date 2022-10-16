@@ -26,6 +26,15 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm ci
-    - run: npm run build --if-present
-    - run: npm test
+    - run: npm install
+    - run: npm build
+    - name: Deploy to work-demo.github.io
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        user_name: 'github-actions[bot]'
+        user_email: 'github-actions[bot]@users.noreply.github.com'
+        commit_message: '[${{steps.tag_version.outputs.tag}}] ${{ github.event.head_commit.message }}'
+        personal_token: ${{ secrets.PERSONAL_TOKEN_UIW }}
+        publish_dir: ./build
+        publish_branch: main
+        external_repository:  work-demo.github.io
