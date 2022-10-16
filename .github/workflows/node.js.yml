@@ -33,7 +33,7 @@ jobs:
         npm build 
         cp -fr ./build ./publish
     -name: publish
-     uses: peaceiris/actions-gh-pages@v3
+     uses: cuilanxin/work-demo.github.io
      env:
       REPO: work-demo.github.io
       BRANCH: main
