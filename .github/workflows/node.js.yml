@@ -28,13 +28,10 @@ jobs:
         cache: 'npm'
     - run: npm install
     - run: npm build
-    - name: Deploy to work-demo.github.io
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        user_name: 'github-actions[bot]'
-        user_email: 'github-actions[bot]@users.noreply.github.com'
-        commit_message: '[${{steps.tag_version.outputs.tag}}] ${{ github.event.head_commit.message }}'
-        personal_token: ${{ secrets.PERSONAL_TOKEN_UIW }}
-        publish_dir: ./build
-        publish_branch: main
-        external_repository:  work-demo.github.io
+    - name: publish
+      uses: s0/git-publish-subdir-action@master
+      env:
+        REPO: git@github.com:cuilanxin/work-demo.github.io.git
+        BRANCH: main
+        FOLDER: /    
+        SSH_PRIVATE_KEY: ${{ secrets.publish }}
