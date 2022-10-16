@@ -33,7 +33,7 @@ jobs:
         npm build 
         cp -fr ./build ./publish
     -name: publish
-     uses: s0/git-publish-subdir-action@master
+     uses: peaceiris/actions-gh-pages@v3
      env:
       REPO: work-demo.github.io
       BRANCH: main
