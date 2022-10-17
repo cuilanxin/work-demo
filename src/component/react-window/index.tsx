@@ -10,6 +10,10 @@ interface ReactWindowProps {
   data: Array<DataType>;
 }
 
+export interface IsMouseMove {
+  screenX: number;
+  screenY: number;
+}
 export default function ReactWindow(props: ReactWindowProps) {
   const { data } = props;
   // const timer = useRef<NodeJS.Timeout>();
@@ -18,6 +22,7 @@ export default function ReactWindow(props: ReactWindowProps) {
   const sentry = useRef<HTMLDivElement | null>(); // 哨兵
   const scrollHeight = useRef<number>(0); // 滚动条高度
   const sign = useRef<number>(0); // 标记
+  const isMouseMove = useRef<IsMouseMove>();
   const [list, setList] = useState<ReactWindowProps["data"]>([]);
   // -- 需要渲染的 dom
   const needDom = Math.ceil(180 / 32) + 4;
@@ -54,15 +59,27 @@ export default function ReactWindow(props: ReactWindowProps) {
     if (scrollTop + 180 >= height) {
       scrollTop = height - 180;
     }
-    setList(data.slice(sign.current, sign.current + needDom));
+    // if (scrollTop % 32 === 0) {
+    // 会有滚动效果，但是会抽搐
+    //  sentry.current!.style.transform = `translateY(${scrollTop}px)`;
+    // }
     sentry.current!.style.transform = `translateY(${scrollTop}px)`;
+    setList(data.slice(sign.current, sign.current + needDom));
   };
   return (
     <div className={style["container"]} ref={(ref) => (containerRef.current = ref)}>
       <div ref={(ref) => (scrollSentry.current = ref)}>
-        <div style={{ position: "absolute", right: 0, left: 0, top: 0 }} ref={(ref) => (sentry.current = ref)}>
+        <div
+          style={{
+            position: "absolute",
+            right: 0,
+            left: 0,
+            top: 0,
+          }}
+          ref={(ref) => (sentry.current = ref)}
+        >
           {list.map((it) => (
-            <Item key={it.value} {...it} isIcon />
+            <Item isMouseMove={isMouseMove} key={it.value} {...it} isIcon />
           ))}
         </div>
       </div>
