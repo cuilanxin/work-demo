@@ -4,10 +4,11 @@ import RW, { DataType } from "@/component/react-window";
 
 export default function VirtualRender() {
   const arr: Array<DataType> = [];
-  for (let index = 0; index < 20000; index++) {
+  for (let i = 0; i < 20000; i++) {
+    const value = `${i.toString(36)}${i}`;
     arr.push({
-      label: index === 19999 ? "最后一条" : `数据+${index}`,
-      value: index,
+      label: i === 19999 ? "最后一条" : value,
+      value: i,
       // disabled: !(index % 4),
     });
   }
