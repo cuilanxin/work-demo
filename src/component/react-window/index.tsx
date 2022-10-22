@@ -28,10 +28,11 @@ export default function ReactWindow(props: ReactWindowProps) {
   useEffect(() => {
     // -- 设置内容高度
     scrollSentry.current!.style.height = data.length * 32 + "px";
+    needDom.current = Math.ceil(containerRef.current!.getClientRects()[0].height / 32) + 3;
     // --
     setList(data.slice(sign.current, needDom.current + sign.current));
     // --
-  }, []);
+  }, [needDom, data]);
 
   const onScroll = () => {
     // 滚动条距离
@@ -56,18 +57,11 @@ export default function ReactWindow(props: ReactWindowProps) {
       onScroll={onScroll}
       ref={(ref) => {
         containerRef.current = ref;
-        if (ref) {
-          needDom.current = Math.ceil(ref!.getClientRects()[0].height / 32) + 3;
-        }
       }}
     >
       <div ref={(ref) => (scrollSentry.current = ref)}>
         <div
           style={{
-            position: "absolute",
-            right: 0,
-            left: 0,
-            top: 0,
             transform: `translateY(${translateY}px)`,
           }}
         >
