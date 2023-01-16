@@ -14,6 +14,7 @@ export interface IsMouseMove {
   screenX: number;
   screenY: number;
 }
+const itemHeight = 32;
 export default function ReactWindow(props: ReactWindowProps) {
   const { data } = props;
   const containerRef = useRef<HTMLDivElement | null>(); // 容器
@@ -27,8 +28,8 @@ export default function ReactWindow(props: ReactWindowProps) {
 
   useEffect(() => {
     // -- 设置内容高度
-    scrollSentry.current!.style.height = data.length * 32 + "px";
-    needDom.current = Math.ceil(containerRef.current!.getClientRects()[0].height / 32) + 3;
+    scrollSentry.current!.style.height = data.length * itemHeight + "px";
+    needDom.current = Math.ceil(containerRef.current!.getClientRects()[0].height / itemHeight) + 3;
     // --
     setList(data.slice(sign.current, needDom.current + sign.current));
     // --
@@ -37,14 +38,14 @@ export default function ReactWindow(props: ReactWindowProps) {
   const onScroll = () => {
     // 滚动条距离
     let scrollTop = containerRef.current!.scrollTop;
-    if (scrollTop < 32) {
+    if (scrollTop < itemHeight) {
       sign.current = 0;
     } else {
-      sign.current = Math.floor(scrollTop / 32);
+      sign.current = Math.floor(scrollTop / itemHeight);
     }
-    const newTranslateY = sign.current * 32;
+    const newTranslateY = sign.current * itemHeight;
     const deviation = Math.abs(translateY - newTranslateY);
-    if (deviation < 32) return;
+    if (deviation < itemHeight) return;
     setTranslateY(newTranslateY);
     const newList = data.slice(sign.current, sign.current + needDom.current);
     if (newList[0] === list[0]) return;
