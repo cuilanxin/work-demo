@@ -1,10 +1,10 @@
-import React from "react";
+import React, { ExoticComponent } from "react";
 import "./index.css";
 
-const RouterLoading = (Component: React.LazyExoticComponent<() => JSX.Element>) => {
-  const Child: React.FC<any> = (props) => (
+const RouterLoading = (Component: ExoticComponent /*React.ComponentType<any>*/) => {
+  const Child: React.FC<any> = () => (
     <React.Suspense fallback={<div className="router-loading">loading</div>}>
-      <Component {...props} />
+      <Component />
     </React.Suspense>
   );
   return <Child />;

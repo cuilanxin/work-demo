@@ -3,6 +3,7 @@ import React, { lazy } from "react";
 import Layout from "./layout";
 import RouterLoading from "./router-loading";
 // import Home from "./pages/home";
+import Suspense from "./pages/suspense";
 
 const routes: Array<RouteObject> = [
   {
@@ -13,7 +14,14 @@ const routes: Array<RouteObject> = [
       {
         path: "home",
         id: "首页",
+        // element: <Home />,
         element: RouterLoading(lazy(() => import("./pages/home"))),
+      },
+      {
+        path: "suspense",
+        id: "React.Suspense",
+        element: <Suspense />,
+        // element: RouterLoading(lazy(() => import("./pages/suspense"))),
       },
       {
         path: "life-cycle",
