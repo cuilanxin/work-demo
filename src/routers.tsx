@@ -33,6 +33,11 @@ const routes: Array<RouteObject> = [
         id: "虚拟渲染",
         element: RouterLoading(lazy(() => import("./pages/virtual-render"))),
       },
+      {
+        path: "state",
+        id: "setState",
+        element: RouterLoading(lazy(() => import("./pages/state"))),
+      },
     ],
   },
   { path: "*", element: <div>404</div> },
